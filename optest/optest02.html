@@ -47,16 +47,13 @@
 					showPage.removeChild(showPage.childNodes[0]);
 					index = 0;
 				}
-				creatBlock(i, colors[i]);
+				let page = document.createElement("h2");
+				page.innerText = `${menu[i]} 클릭`;
+				page.setAttribute("class","show");
+				page.style.background = colors[i];
+				showPage.appendChild(page);
 				index = 1;
 			}
-		}
-		const creatBlock = (i, str) => {
-			let page = document.createElement("h2");
-			page.innerText = `${menu[i]} 클릭`;
-			page.setAttribute("class","show");
-			page.style.background = str;
-			showPage.appendChild(page);
 		}
 	</script>
 	<div id="test"></div>
