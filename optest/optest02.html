@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#test {
+	text-align: center;
+}
+
+.buttonF {
+	margin: 2px;
+}
+
+#showPage {
+	margin: 50px;
+}
+
+.show {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		const menu = ["버튼 1","버튼 2","버튼 3","자동","지우기"];
+		window.onload = () =>{
+			const test = document.querySelector("#test");
+			let page = "";
+			for(let i=0;i<menu.length;i++){
+				page += `<input type="button" class="buttonF" value="${menu[i]}" onclick="colorBlock(${i})">`;
+			}
+			test.innerHTML = page;
+		}
+		
+		let index = 0;		
+		const colorBlock = (i) => {
+			const showPage = document.querySelector("#showPage");
+			switch(i){
+			case 0:
+				if(index == 1){
+					showPage.removeChild(showPage.childNodes[0]);
+					index = 0;
+				}
+				creatBlock(i, "yellow");
+				index = 1;
+				break;
+			case 1:
+				if(index == 1){
+					showPage.removeChild(showPage.childNodes[0]);
+					index = 0;
+				}
+				creatBlock(i, "green");
+				index = 1;
+				break;
+			case 2:
+				if(index == 1){
+					showPage.removeChild(showPage.childNodes[0]);
+					index = 0;
+				}
+				creatBlock(i, "pink");
+				index = 1;
+				break;
+			case 3://진짜 모르것다
+				break;
+			case 4:
+				if(index == 1){
+					showPage.removeChild(showPage.childNodes[0]);
+					index = 0;
+				}
+				break;
+			} 
+		}
+		
+		const creatBlock = (i, str) => {
+			let page = document.createElement("h2");
+			page.innerText = `${menu[i]} 클릭`;
+			page.setAttribute("class","show");
+			page.style.background = str;
+			showPage.appendChild(page);
+		}
+	</script>
+	<div id="test"></div>
+	<div id="showPage"></div>
+
+</body>
+</html>

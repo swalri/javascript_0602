@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const myFocus = () => {
+			document.querySelector("#pwd").focus();//현재위치를 정의
+			
+			const txt = document.querySelector("#txt");//내용을 가져온다
+			document.querySelector("#copy").value = txt.value;//내용을 복사한다
+		}
+		const test = (t) => {
+			console.log(document.querySelector("#txt"));
+			console.log(t);
+			document.querySelector("#copy").value = t.value;
+		}
+		
+	</script>
+	<input type="text" id="txt" oninput="test(this)">
+	<!-- this는 자기자신을 의미한다 -->
+	<br>
+	<input type="text" id="pwd">
+	<br>
+	<input type="text" id="copy">
+	<br>
+	<input type="button" onclick="myFocus()" value="클릭">
+	<br>
+
+</body>
+</html>

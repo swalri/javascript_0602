@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* 이미지 크기 */
+.img {
+	width: 100px;
+	height: 100px;
+}
+
+.imgdiv {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	border: 1px solid gray;
+}
+
+#labeCh {
+	width: 100px;
+	height: 50px;
+	text-align: center; /* 글자 가로 가운데 */
+	/*글자 블럭 가운데로 하는데 있어 필수*/
+	position: fixed; /* 이거야 고정 */
+	top: 25px;
+	right: 25px;
+}
+
+.plus_orange {
+	background: orange;
+}
+
+.plus_green {
+	background: green;
+}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		const images = ["../images/최근상품01.jpg",
+			"../images/최근상품02.jpg",
+			"../images/최근상품03.jpg",
+			"../images/최근상품04.jpg",
+			"../images/최근상품05.jpg",
+			"../images/최근상품06.jpg",
+			"../images/최근상품07.jpg",
+			"../images/최근상품08.jpg"];
+		/*초기실행*/
+		window.onload = () =>{
+			const div = document.querySelector("#test");
+			let msg = "";
+			for(let i = 0;i<images.length;i++){
+				msg += (i%4==0)?`<br>`:``;
+				msg += `<div class="imgdiv" id="${i}">`;
+				msg += `<img src="${images[i]}" class="img" onclick="plus_img(${i})">`;
+				msg += `</div>`;
+			}
+			document.getElementById("labeCh").setAttribute("class","plus_orange");
+			div.innerHTML = msg;
+		}
+		let index = 0;
+		const plus_img = (i) => {
+			const img = document.createElement("img");
+			const labeCh = document.getElementById("labeCh");			
+			const la = document.getElementById("la");
+			const ch = document.getElementById("ch");
+			
+			img.src = images[i];//태그에 추가하는 속성
+			img.setAttribute("class","img");
+			
+			if(index == 0){
+				labeCh.removeAttribute("class");
+				labeCh.setAttribute("class","plus_green");
+				la.innerHTML = `최근 추가 한 상품`;
+			}
+			
+			if(index > 4){
+				ch.removeChild(ch.childNodes[0]);
+			}
+			
+			ch.appendChild(img);
+			index++;
+		}
+	</script>
+
+	<div id="test"></div>
+	<div id="labeCh">
+		<label id="la">목록이<br> 없습니다<br></label>
+		<div id="ch"></div>
+	</div>
+
+</body>
+</html>

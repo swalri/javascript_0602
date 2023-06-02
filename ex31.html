@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const test = () => {
+			//alert("test실행");
+			const fo = document.querySelector("#fo");
+			console.log(fo);
+			console.log(fo.pwd1.value);
+			console.log(fo.pwd2.value);
+			const pwd2 = document.querySelector("#pwd2");
+			if(fo.pwd1.value === pwd2.value){
+				alert("성공");
+				fo.submit();
+			}else{
+				alert("실패");
+			}
+		}
+	</script>
+
+	<form id="fo" action="ex30.html">
+		<input type="text" id="pwd1"><br>
+		<input type="text" id="pwd2"><br>
+		<input type="button" value="전송"	onclick="test()"><br>
+	</form>
+	
+	<button type="button" onclick="location.href='ex29.html'">ex29이동</button>
+	<button type="button" onclick="test01()">네이버 이동</button>
+	<script type="text/javascript">
+	const test01 = () =>{
+		location.href='https://www.naver.com';
+	}
+	</script>
+	
+</body>
+</html>

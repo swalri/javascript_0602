@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var img;
+		function add() {
+			img = document.createElement("img");//태그를 만드는 명령어
+			img.src = "images/img.png";//태그에 추가하는 속성
+			img.width = 100;
+			img.style.height = "100px";
+			//img.setAttribute("width",100);
+			//img.setAttribute("height",100);
+			//img.setAttribute("src","이미지 경로");
+			document.getElementById("test").appendChild(img);//태그를 찾아 안에 만든 태그를 추가
+			//document.getElementById("test").innerHTML = img;//태그 안에 있는 내용을 변경
+		}
+		const remove = () =>{
+			let items = document.querySelector("#test");
+			//console.log(items.childNodes);
+			items.removeChild(items.childNodes[0]);//태그를 찾아 안에 있는 태그중 해당되는 태그를 삭제
+			//document.querySelector("img").remove();//여러개 있을 경우 마지막에있는 하나를 삭제	
+		}
+	</script>
+	<p id="test"></p>
+	<a href="#" onclick="add()">[이미지 추가]</a>
+	<a href="#" onclick="remove()">[이미지 삭제]</a>
+</body>
+</html>

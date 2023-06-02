@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#remove {
+	display: none;
+}
+
+#remove.a { /* 아이디에 있는 클래스 */
+	display: block;
+	background: green;
+}
+
+#aaa { /* 아이디에 있는 클래스 */
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+#aaa.a { /* 아이디에 있는 클래스 */
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(10, 10, 10, 0.5);
+}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		const rmBlock = () => {
+			let remove = document.getElementById("remove");
+			remove.setAttribute("class","a");//remove에 클래스 추가
+			let aaa = document.getElementById("aaa");
+			aaa.setAttribute("class","a");//remove에 클래스 추가
+		}
+		const rmNone = () => {
+			let remove = document.getElementById("remove");
+			remove.removeAttribute("class"); //클래스 삭제
+			let aaa = document.getElementById("aaa");
+			aaa.removeAttribute("class"); //클래스 삭제
+		}
+	</script>
+	<input type="button" value="rmBlock" onclick="rmBlock()">
+	
+	
+	
+	<div id="remove">
+		<h3>안녕하세요</h3>
+		<input type="button" value="되돌리기" onclick="rmNone()">
+	</div>
+
+	<div id="aaa">
+		<div>
+			<input type="text"><br> <input type="text"><br>
+			<input type="text"><br> <input type="text"><br>
+			<input type="button" value="되돌리기" onclick="rmNone()">
+		</div>
+	</div>
+
+
+</body>
+</html>
