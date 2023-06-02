@@ -26,6 +26,7 @@
 <body>
 	<script type="text/javascript">
 		const menu = ["버튼 1","버튼 2","버튼 3","자동","지우기"];
+		const colors = ["yellow", "green", "pink","red"];
 		window.onload = () =>{
 			const test = document.querySelector("#test");
 			let page = "";
@@ -38,42 +39,18 @@
 		let index = 0;		
 		const colorBlock = (i) => {
 			const showPage = document.querySelector("#showPage");
-			switch(i){
-			case 0:
+			if(menu[i] == "지우기"){
+				showPage.removeChild(showPage.childNodes[0]);
+				index = 0;
+			}else{
 				if(index == 1){
 					showPage.removeChild(showPage.childNodes[0]);
 					index = 0;
 				}
-				creatBlock(i, "yellow");
+				creatBlock(i, colors[i]);
 				index = 1;
-				break;
-			case 1:
-				if(index == 1){
-					showPage.removeChild(showPage.childNodes[0]);
-					index = 0;
-				}
-				creatBlock(i, "green");
-				index = 1;
-				break;
-			case 2:
-				if(index == 1){
-					showPage.removeChild(showPage.childNodes[0]);
-					index = 0;
-				}
-				creatBlock(i, "pink");
-				index = 1;
-				break;
-			case 3://진짜 모르것다
-				break;
-			case 4:
-				if(index == 1){
-					showPage.removeChild(showPage.childNodes[0]);
-					index = 0;
-				}
-				break;
-			} 
+			}
 		}
-		
 		const creatBlock = (i, str) => {
 			let page = document.createElement("h2");
 			page.innerText = `${menu[i]} 클릭`;
