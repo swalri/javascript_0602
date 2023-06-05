@@ -3,24 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.img { /* 초기 사진이미지 */
+	width: 100px;
+	height: 100px;
+	margin: 5px;
+}
+
+#subPage {
+	display: none;
+}
+
+#aaa.a { /* 전체 */
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: rgba(10, 10, 10, 0.2);
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+#subPage.a { /* 사진 페이지 */
+	display: block;
+	text-align: center;
+	width: 800px;
+	height: 700px;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	background: gray;
+	border: 10px solid burlywood;
+}
+
+#xdox { /* 우측상단 x박스 */
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background: gainsboro;
+	color: white;
+	width: 30px;
+	height: 30px;
+	border: 0px;
+}
+
+.show {
+	width: 550px;
+	height: 550px;
+}
+</style>
 </head>
 <body>
 	<script type="text/javascript">
-		//ex27
+		const images = [ "../images/최근상품01.jpg", "../images/최근상품02.jpg",
+				"../images/최근상품03.jpg" ];
+		/*초기실행*/
+		window.onload = () =>{
+			const div = document.querySelector("#test");
+			let msg = `<h1>light box</h1>`;
+			for(let i = 0;i<images.length;i++){
+				msg += `<img src="${images[i]}" class="img" onclick="bigImg(${i})">`;
+			}
+			//document.getElementById("labeCh").setAttribute("class","plus_orange");
+			div.innerHTML = msg;
+		}
+		
+		//큰페이지 출력
+		const bigImg = (i) => {
+			const bigImage = document.querySelector("#bigImage");
+			let img = document.createElement("img");
+			img.src = images[i];
+			img.setAttribute("class","show");
+			bigImage.appendChild(img);
+			
+			document.getElementById("subPage").setAttribute("class","a");
+			document.getElementById("aaa").setAttribute("class","a");
+		}//큰페이지 삭제
+		const rmNone = () => {
+			const bigImage = document.querySelector("#bigImage");
+			bigImage.removeChild(bigImage.childNodes[0]);
+			
+			let remove = document.getElementById("subPage");
+			remove.removeAttribute("class"); //클래스 삭제
+			let aaa = document.getElementById("aaa");
+			aaa.removeAttribute("class"); //클래스 삭제
+		}
 	</script>
 
-	<h1>light box</h1>
-	<img alt="" src="">
-	<img alt="" src="">
-	<img alt="" src="">
-
-
-	<div>
-		<div>
-			<input type="button" value="x" onclick="rmNone()">
-			<h2>2 0 1 9 Super_Car</h2>
+	<div id="test"></div>
+	<div id="aaa">
+		<div id="subPage">
+			<input type="button" value="X" onclick="rmNone()" id="xdox">
+			<h1 style="color: yellow;">2 0 1 9 Super_Car</h1>
 			<hr>
-			<img alt="" src="">
+			<div id="bigImage"></div>
 		</div>
 	</div>
 </body>

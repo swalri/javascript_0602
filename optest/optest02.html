@@ -36,12 +36,32 @@
 			test.innerHTML = page;
 		}
 		
-		let index = 0;		
+		let index = 0;
+		var flag = false;
 		const colorBlock = (i) => {
 			const showPage = document.querySelector("#showPage");
+			if(flag){
+				clearTimeout(e);//자동 종료
+				flag = !flag; //false로 지정
+			}//자동 종료
+			
 			if(menu[i] == "지우기"){
-				showPage.removeChild(showPage.childNodes[0]);
-				index = 0;
+				showPage.removeChild(showPage.childNodes[0]);//지움
+				index = 0;//없다라는 것을 인식
+			}else if(menu[i] == "자동"){
+				flag = true;
+				if(index == 1){
+					showPage.removeChild(showPage.childNodes[0]);
+					index = 0;
+				}else{
+					let page = document.createElement("h2");
+					page.innerText = `${menu[i]} 클릭`;
+					page.setAttribute("class","show");
+					page.style.background = colors[i];
+					showPage.appendChild(page);
+					index = 1;
+				}
+				e = setTimeout(`colorBlock(${i})`, 100);
 			}else{
 				if(index == 1){
 					showPage.removeChild(showPage.childNodes[0]);
@@ -53,8 +73,8 @@
 				page.style.background = colors[i];
 				showPage.appendChild(page);
 				index = 1;
-			}
-		}
+			}//else
+		}//function
 	</script>
 	<div id="test"></div>
 	<div id="showPage"></div>
