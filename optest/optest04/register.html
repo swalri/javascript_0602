@@ -3,8 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#label {
+	color: rgba(10, 10, 10, 0.5);
+}
+</style>
 </head>
 <body>
-
+	<script type="text/javascript">
+		const pwdChk = (t) => {
+			const pwd1 = document.querySelector("#pwd1");
+			console.log(pwd1.value+", "+t.value);
+			document.querySelector("label").innerHTML = "비번 일치";
+			pwd1.focus();
+		}
+		/**비번확인*/
+		const pwdInput = () => {
+			const pwd02 = document.querySelector("#pwd02");
+			const pwd03 = document.querySelector("#pwd03");
+			if(pwd02.value == ""){
+				document.querySelector("#label").innerHTML = "";
+			}else{
+				if(pwd02.value == pwd03.value){//비밀번호가 일치할경우
+					document.querySelector("#label").innerHTML = "비번 일치";
+				}else{
+					document.querySelector("#label").innerHTML = "불일치";
+				}
+			}
+		}
+		const input = () => {
+			const fo = document.querySelector("#fo");
+			const pwd01 = document.querySelector("#pwd01");
+			const pwd02 = document.querySelector("#pwd02");
+			const pwd03 = document.querySelector("#pwd03");
+			if(pwd01.value == ""){
+				alert("아이디를 입력해주세요");
+			}else{
+				if(pwd02.value == ""){
+					alert("비밀번호를 입력해주세요");
+				}else{
+					if(pwd03.value == ""){
+						alert("비밀번호를 확인해주세요");
+					}else if(pwd02.value != pwd03.value){
+						alert("비밀번호가 일치하지 않습니다");
+						pwd03.value = "";
+					}else{
+						alert("가입을 축하합니다");
+						fo.submit();
+					}//비밀번호 확인함, 비밀번호 일치함
+				}//비밀번호 입력함
+			}//아이디 입력함
+		}
+	</script>
+	<form id="fo" action="success.html">
+		<input type="text" id="pwd01" placeholder="아이디"> <br> <input
+			type="password" id="pwd02" placeholder="비밀번호" oninput="pwdInput()">
+		<br> <input type="password" id="pwd03" placeholder="비밀번호 확인"
+			oninput="pwdInput()"> <label id="label"></label> <br> <input
+			type="text" id="pwd04" onchange="pwdChk(this)" placeholder="이름">
+		<hr>
+		<input type="button" value="등록" onclick="input()">
+	</form>
 </body>
 </html>
